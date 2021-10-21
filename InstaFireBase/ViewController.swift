@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     let emailTextfield = UITextField(placeholder: "Email")
@@ -25,7 +24,7 @@ class ViewController: UIViewController {
     
     let signUpButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(red: 149/255, green: 204/255, blue: 244/255, alpha: 1)
+        button.backgroundColor = UIColor.rgb(red: 149, green: 204, blue: 244)
         button.setTitle("Sign Up", for: .normal)
         button.layer.cornerRadius = 5
         button.titleLabel?.font =  UIFont.systemFont(ofSize: 14)
@@ -35,31 +34,32 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(plusPhotoButton)
-        plusPhotoButton.heightAnchor.constraint(equalToConstant: 140).isActive = true
-        plusPhotoButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
-        plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        plusPhotoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
         
         setupSignUpView()
        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     fileprivate func setupSignUpView() {
+        
+        view.addSubview(plusPhotoButton)
+        plusPhotoButton.constraints(top: view.topAnchor, bottom: nil, left: nil, right: nil, paddingTop: 100, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 140, height: 140)
+        plusPhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [emailTextfield, userNameTextfield, passwordTextfield, signUpButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(stackView)
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: plusPhotoButton.bottomAnchor, constant: 40),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            stackView.heightAnchor.constraint(equalToConstant: 200)
-        ])
+        stackView.constraints(top: plusPhotoButton.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingBottom: 0, paddingLeft: 40, paddingRight: 40, width: 0, height: 200)
     }
 }
 

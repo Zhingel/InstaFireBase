@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		839D56418B3576765129507F /* Pods_InstaFireBase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D277D5B7769DEB20B50D4F30 /* Pods_InstaFireBase.framework */; };
 		EE2709562720153E0051CA6B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2709552720153E0051CA6B /* Extension.swift */; };
+		EE27095927203D750051CA6B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE27095827203D750051CA6B /* GoogleService-Info.plist */; };
 		EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBE9E271F318B004D61DD /* AppDelegate.swift */; };
 		EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */; };
 		EE2BBEA3271F318B004D61DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBEA2271F318B004D61DD /* ViewController.swift */; };
@@ -17,8 +19,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2CB99AA01934908225967862 /* Pods-InstaFireBase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFireBase.release.xcconfig"; path = "Target Support Files/Pods-InstaFireBase/Pods-InstaFireBase.release.xcconfig"; sourceTree = "<group>"; };
+		8ABCDC26B670C2F4DB17074D /* Pods-InstaFireBase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFireBase.debug.xcconfig"; path = "Target Support Files/Pods-InstaFireBase/Pods-InstaFireBase.debug.xcconfig"; sourceTree = "<group>"; };
+		D277D5B7769DEB20B50D4F30 /* Pods_InstaFireBase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaFireBase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2709552720153E0051CA6B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		EE2BBE9B271F318B004D61DD /* InstaFireBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFireBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE27095827203D750051CA6B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE2BBE9B271F318B004D61DD /* InstaFireBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = InstaFireBase.app; path = "/Users/staszingel/Documents/Development/07.21/InstaFireBase/build/Debug-iphoneos/InstaFireBase.app"; sourceTree = "<absolute>"; };
 		EE2BBE9E271F318B004D61DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EE2BBEA2271F318B004D61DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,35 +39,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				839D56418B3576765129507F /* Pods_InstaFireBase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8100A0A10A701782BB53F22C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8ABCDC26B670C2F4DB17074D /* Pods-InstaFireBase.debug.xcconfig */,
+				2CB99AA01934908225967862 /* Pods-InstaFireBase.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D896627D5358A13204149F0F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D277D5B7769DEB20B50D4F30 /* Pods_InstaFireBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE270957272018EF0051CA6B /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EE2709552720153E0051CA6B /* Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		EE2BBE92271F318B004D61DD = {
 			isa = PBXGroup;
 			children = (
 				EE2BBE9D271F318B004D61DD /* InstaFireBase */,
-				EE2BBE9C271F318B004D61DD /* Products */,
+				8100A0A10A701782BB53F22C /* Pods */,
+				D896627D5358A13204149F0F /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		EE2BBE9C271F318B004D61DD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				EE2BBE9B271F318B004D61DD /* InstaFireBase.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		EE2BBE9D271F318B004D61DD /* InstaFireBase */ = {
 			isa = PBXGroup;
 			children = (
+				EE270957272018EF0051CA6B /* Utils */,
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
 				EE2BBEA2271F318B004D61DD /* ViewController.swift */,
-				EE2709552720153E0051CA6B /* Extension.swift */,
+				EE27095827203D750051CA6B /* GoogleService-Info.plist */,
 				EE2BBEA4271F318B004D61DD /* Main.storyboard */,
 				EE2BBEA7271F318D004D61DD /* Assets.xcassets */,
 				EE2BBEA9271F318D004D61DD /* LaunchScreen.storyboard */,
@@ -77,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE2BBEAF271F318D004D61DD /* Build configuration list for PBXNativeTarget "InstaFireBase" */;
 			buildPhases = (
+				5622F7B1DB17D480F504DC24 /* [CP] Check Pods Manifest.lock */,
 				EE2BBE97271F318B004D61DD /* Sources */,
 				EE2BBE98271F318B004D61DD /* Frameworks */,
 				EE2BBE99271F318B004D61DD /* Resources */,
+				F5FAAC287AADA9D16D8D62F6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -114,7 +143,7 @@
 				Base,
 			);
 			mainGroup = EE2BBE92271F318B004D61DD;
-			productRefGroup = EE2BBE9C271F318B004D61DD /* Products */;
+			productRefGroup = EE2BBE92271F318B004D61DD;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -128,6 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE27095927203D750051CA6B /* GoogleService-Info.plist in Resources */,
 				EE2BBEAB271F318D004D61DD /* LaunchScreen.storyboard in Resources */,
 				EE2BBEA8271F318D004D61DD /* Assets.xcassets in Resources */,
 				EE2BBEA6271F318B004D61DD /* Main.storyboard in Resources */,
@@ -135,6 +165,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5622F7B1DB17D480F504DC24 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-InstaFireBase-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5FAAC287AADA9D16D8D62F6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InstaFireBase/Pods-InstaFireBase-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-InstaFireBase/Pods-InstaFireBase-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-InstaFireBase/Pods-InstaFireBase-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EE2BBE97271F318B004D61DD /* Sources */ = {
@@ -288,6 +360,7 @@
 		};
 		EE2BBEB0271F318D004D61DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ABCDC26B670C2F4DB17074D /* Pods-InstaFireBase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -316,6 +389,7 @@
 		};
 		EE2BBEB1271F318D004D61DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2CB99AA01934908225967862 /* Pods-InstaFireBase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
