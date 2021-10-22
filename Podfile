@@ -7,7 +7,8 @@ target 'InstaFireBase' do
 
   # Pods for InstaFireBase
 
-pod 'FirebaseCore'
+pod 'Firebase', '>= 2.5.1'
 
-
+pod 'Firebase/Auth'
+pod 'Firebase/Database'
 end
