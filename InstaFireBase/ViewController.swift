@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -90,19 +91,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
             }
             print("successfuly", user?.user.uid ?? "")
             
-            
-            
-            guard let uid = user?.user.uid else {return}
-            let usernameValues = ["username" : username]
-            let values = [ uid : usernameValues]
-            Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
-                if let err = err {
-                    print("error to safe user info in database", err)
+            guard let image = self.plusPhotoButton.imageView?.image else {return}
+            guard let uploadData = image.jpegData(compressionQuality: 0.3) else {return}
+            let fileName = UUID().uuidString
+            let storageRef = Storage.storage().reference().child("profile_images").child(fileName)
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
+                    print("failed to upload data")
                     return
                 }
-                print("successfuly save user")
+                
+                storageRef.downloadURL(completion: { (url, error) in
+                        if error != nil {
+                            print(error!.localizedDescription)
+                            return
+                        }
+                        if let profileImageUrl = url?.absoluteString {
+                            print("Success")
+                            guard let uid = user?.user.uid else {return}
+                            let dictionaryValues = ["username" : username, "profileImageUrl" : profileImageUrl]
+                            let values = [ uid : dictionaryValues]
+                            Database.database().reference().child("users").updateChildValues(values) { (err, ref) in
+                                if let err = err {
+                                    print("error to safe user info in database", err)
+                                    return
+                                }
+                                print("successfuly save user")
+                            }
+                        }
+                    })
+                
+               
             }
-            
         })
     }
     fileprivate func setupTextFields() {
