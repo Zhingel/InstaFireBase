@@ -15,6 +15,9 @@
 		EE2BBEA6271F318B004D61DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2BBEA4271F318B004D61DD /* Main.storyboard */; };
 		EE2BBEA8271F318D004D61DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2BBEA7271F318D004D61DD /* Assets.xcassets */; };
 		EE2BBEAB271F318D004D61DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2BBEA9271F318D004D61DD /* LaunchScreen.storyboard */; };
+		EE55BA382723E61700109530 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55BA372723E61700109530 /* TabBarController.swift */; };
+		EE55BA3A2723E8FD00109530 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55BA392723E8FD00109530 /* UserProfileController.swift */; };
+		EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55BA3D27255D1F00109530 /* UserProfileHeader.swift */; };
 		EE63BD312723126500745BF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE63BD302723126500745BF3 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +33,9 @@
 		EE2BBEA7271F318D004D61DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2BBEAA271F318D004D61DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE2BBEAC271F318D004D61DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE55BA372723E61700109530 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EE55BA392723E8FD00109530 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		EE55BA3D27255D1F00109530 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		EE63BD2F272305E100745BF3 /* InstaFireBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFireBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63BD302723126500745BF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,10 +90,12 @@
 		EE2BBE9D271F318B004D61DD /* InstaFireBase */ = {
 			isa = PBXGroup;
 			children = (
-				EE270957272018EF0051CA6B /* Utils */,
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
 				EE2BBEA2271F318B004D61DD /* ViewController.swift */,
+				EE55BA372723E61700109530 /* TabBarController.swift */,
+				EE55BA3C27255CF300109530 /* UserProfile */,
+				EE270957272018EF0051CA6B /* Utils */,
 				EE2BBEA4271F318B004D61DD /* Main.storyboard */,
 				EE63BD302723126500745BF3 /* GoogleService-Info.plist */,
 				EE2BBEA7271F318D004D61DD /* Assets.xcassets */,
@@ -95,6 +103,15 @@
 				EE2BBEAC271F318D004D61DD /* Info.plist */,
 			);
 			path = InstaFireBase;
+			sourceTree = "<group>";
+		};
+		EE55BA3C27255CF300109530 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				EE55BA392723E8FD00109530 /* UserProfileController.swift */,
+				EE55BA3D27255D1F00109530 /* UserProfileHeader.swift */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,8 +231,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2BBEA3271F318B004D61DD /* ViewController.swift in Sources */,
+				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
+				EE55BA3A2723E8FD00109530 /* UserProfileController.swift in Sources */,
 				EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */,
+				EE55BA382723E61700109530 /* TabBarController.swift in Sources */,
 				EE2709562720153E0051CA6B /* Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
