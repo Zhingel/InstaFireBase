@@ -8,19 +8,43 @@
 import UIKit
 
 class UserProfileHeader: UICollectionViewCell {
-    let profileImage = UIImageView()
+    let profileImage: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .red
+        image.layer.cornerRadius = 80/2
+        image.clipsToBounds = true
+        return image
+    }()
+    let gridButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "grid"), for: .normal)
+        return button
+    }()
+    let listButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "list"), for: .normal)
+        return button
+    }()
+    let bookmarkButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "ribbon"), for: .normal)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .blue
+        self.backgroundColor = .white
         addSubview(profileImage)
         profileImage.constraints(top: self.topAnchor, bottom: nil, left: self.leftAnchor, right: nil, paddingTop: 20, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 80, height: 80)
-        profileImage.backgroundColor = .red
-        profileImage.layer.cornerRadius = 80/2
-        profileImage.clipsToBounds = true
-        
-        
+        tabbarView()
     }
     
+    fileprivate func tabbarView() {
+        let stackView = UIStackView(arrangedSubviews: [gridButton, listButton, bookmarkButton])
+        addSubview(stackView)
+        stackView.constraints(top: nil, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 30)
+    }
+     
     var user: User? {
         didSet {
             guard let profileImageURL = user?.profileImageURL else {return}
