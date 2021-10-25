@@ -20,6 +20,9 @@ class MainTabBarController : UITabBarController {
             }
             return
         }
+        setupViewControllers()
+    }
+    func setupViewControllers() {
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         let navigationController = UINavigationController(rootViewController: userProfileController)
@@ -29,6 +32,5 @@ class MainTabBarController : UITabBarController {
         navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
         tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         viewControllers = [navigationController, UIViewController()]
-        
     }
 }

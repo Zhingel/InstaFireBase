@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginController: UIViewController {
     let swichToSignUpButton: UIButton = {
@@ -53,7 +54,18 @@ class LoginController: UIViewController {
         loginSetup()
     }
     @objc func handleLogin() {
-        print("sdvdfgfg")
+        guard let email = emailLogin.text else {return}
+        guard let password = passwordLogin.text else {return}
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("can't Login", error)
+                return
+            }
+            print("Succesfully login", result?.user.uid ?? "")
+            guard let tabBarController = UIApplication.shared.windows[0].rootViewController as? MainTabBarController else {return}
+            tabBarController.setupViewControllers()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     @objc func handleTextInputChanged() {
         let isFormValid = emailLogin.text?.count ?? 0 > 0 && passwordLogin.text?.count ?? 0 > 0

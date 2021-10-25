@@ -127,6 +127,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
                                     return
                                 }
                                 print("successfuly save user")
+                                guard let tabBarController = UIApplication.shared.windows[0].rootViewController as? MainTabBarController else {return}
+                                tabBarController.setupViewControllers()
+                                self.dismiss(animated: true, completion: nil)
                             }
                         }
                     })
