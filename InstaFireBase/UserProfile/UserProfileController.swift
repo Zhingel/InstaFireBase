@@ -17,9 +17,22 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: "headerID")
         collectionView.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         fetchUsers()
     }
     
+    @objc func logOutMethod() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: {_ in
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print("Some problem with LogOut")
+            }
+        }))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true)
+    }
     fileprivate func fetchUsers() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { snapshot in

@@ -13,6 +13,14 @@ import FirebaseStorage
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    let swichToLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributeTitle = NSMutableAttributedString(string: "Already have an accaunt?  ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14),NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        attributeTitle.append(NSAttributedString(string: "Login", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.rgb(red: 17, green: 154, blue: 257)]))
+        button.setAttributedTitle(attributeTitle, for: .normal)
+        button.addTarget(self, action: #selector(switchToLogin), for: .touchUpInside)
+        return button
+    }()
     let plusPhotoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "plus_photo")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -38,18 +46,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         button.isEnabled = false
         return button
     }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupTextFields()
         setupSignUpView()
     }
     
+
     
-    
-    
-    
-    
+    @objc func switchToLogin() {
+        navigationController?.popViewController(animated: true)
+    }
     @objc func handlePlusPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -140,6 +150,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         stackView.spacing = 10
         view.addSubview(stackView)
         stackView.constraints(top: plusPhotoButton.bottomAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 40, paddingBottom: 0, paddingLeft: 40, paddingRight: 40, width: 0, height: 200)
+        
+        view.addSubview(swichToLoginButton)
+        swichToLoginButton.constraints(top: nil, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, paddingBottom: -20, paddingLeft: 0, paddingRight: 0, width: 0, height: 40)
     }
 }
 
