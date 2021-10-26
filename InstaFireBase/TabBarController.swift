@@ -23,14 +23,21 @@ class MainTabBarController : UITabBarController {
         setupViewControllers()
     }
     func setupViewControllers() {
+        let homeNavController = setupNavigationController(imageName: "home_unselected", selectedImageName: "home_selected")
+        let searchNavController = setupNavigationController(imageName: "search_unselected", selectedImageName: "search_selected")
+        let plusNavController = setupNavigationController(imageName: "plus_unselected", selectedImageName: "plus_selected")
+        let likeNavController = setupNavigationController(imageName: "like_unselected", selectedImageName: "like_selected")
         let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
-        let navigationController = UINavigationController(rootViewController: userProfileController)
-        navigationController.tabBarItem.image = UIImage(named: "profile_unselected")
-        navigationController.tabBarItem.selectedImage = UIImage(named: "profile_selected")
+        let profileNavigationController = setupNavigationController(imageName: "profile_unselected", selectedImageName: "profile_selected", viewController: userProfileController)
         tabBar.tintColor = .black
-        navigationController.navigationBar.scrollEdgeAppearance = navigationController.navigationBar.standardAppearance
-        tabBar.scrollEdgeAppearance = tabBar.standardAppearance
-        viewControllers = [navigationController, UIViewController()]
+        viewControllers = [homeNavController, searchNavController, plusNavController, likeNavController, profileNavigationController]
+    }
+    func setupNavigationController(imageName: String, selectedImageName: String, viewController: UIViewController = UIViewController()) -> UINavigationController {
+       let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.image = UIImage(named: imageName)
+        navController.tabBarItem.selectedImage = UIImage(named: selectedImageName)
+        navController.navigationBar.scrollEdgeAppearance = navController.navigationBar.standardAppearance
+        return navController
     }
 }
