@@ -23,6 +23,7 @@
 		EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D125272867B70000D09E /* PhotoSelectorController.swift */; };
 		EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */; };
 		EE88D12B272955F50000D09E /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */; };
+		EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D12C2729B1D10000D09E /* EditTextViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		EE88D125272867B70000D09E /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
+		EE88D12C2729B1D10000D09E /* EditTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				EE88D125272867B70000D09E /* PhotoSelectorController.swift */,
+				EE88D12C2729B1D10000D09E /* EditTextViewController.swift */,
 				EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */,
 				EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */,
 			);
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2BBEA3271F318B004D61DD /* ViewController.swift in Sources */,
+				EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */,
 				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
 				EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */,

@@ -10,6 +10,7 @@ import UIKit
 import Photos
 
 class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    var header: PhotoSelectorHeader?
     var images = [UIImage]()
     var assets = [PHAsset]()
     var selectedImage: UIImage?
@@ -56,27 +57,35 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     
     @objc func handleNext() {
-        print("Next")
+        let viewController = EditTextViewController()
+        viewController.selectedImage = header?.imageView.image 
+        navigationController?.pushViewController(viewController, animated: true)
     }
     @objc func handleCancel() {
        dismiss(animated: true)
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotoSelectorCell {
-            cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6608029801)
+          //  cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6608029801)
             selectedImage = images[indexPath.item]
-            
+           
             collectionView.reloadData()
+           
+            
         }
-        
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .bottom, animated: true)
         
     }
-    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoSelectorCell {
-            cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
-        
-        }
-    }
+//    override func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoSelectorCell {
+//            cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+//
+//        }
+//    }
+    
+    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         CGSize(width: view.bounds.width, height: view.bounds.width)
     }
@@ -85,6 +94,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath) as! PhotoSelectorHeader
+        self.header = header
         if let selectedImage = selectedImage {
             if let index = self.images.firstIndex(of: selectedImage) {
                 let selectedAsset = self.assets[index]
