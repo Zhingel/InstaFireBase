@@ -20,6 +20,8 @@
 		EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55BA3D27255D1F00109530 /* UserProfileHeader.swift */; };
 		EE55BA402726AB4300109530 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE55BA3F2726AB4300109530 /* LoginController.swift */; };
 		EE63BD312723126500745BF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE63BD302723126500745BF3 /* GoogleService-Info.plist */; };
+		EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D125272867B70000D09E /* PhotoSelectorController.swift */; };
+		EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		EE55BA3F2726AB4300109530 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		EE63BD2F272305E100745BF3 /* InstaFireBase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFireBase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE63BD302723126500745BF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE88D125272867B70000D09E /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
+		EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
 				EE2BBEA2271F318B004D61DD /* ViewController.swift */,
+				EE88D129272949E90000D09E /* NewPost */,
 				EE55BA372723E61700109530 /* TabBarController.swift */,
 				EE55BA412726AB4900109530 /* Login */,
 				EE55BA3C27255CF300109530 /* UserProfile */,
@@ -123,6 +128,15 @@
 				EE55BA3F2726AB4300109530 /* LoginController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		EE88D129272949E90000D09E /* NewPost */ = {
+			isa = PBXGroup;
+			children = (
+				EE88D125272867B70000D09E /* PhotoSelectorController.swift */,
+				EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */,
+			);
+			path = NewPost;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,11 +258,13 @@
 				EE2BBEA3271F318B004D61DD /* ViewController.swift in Sources */,
 				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
+				EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */,
 				EE55BA3A2723E8FD00109530 /* UserProfileController.swift in Sources */,
 				EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */,
 				EE55BA402726AB4300109530 /* LoginController.swift in Sources */,
 				EE55BA382723E61700109530 /* TabBarController.swift in Sources */,
 				EE2709562720153E0051CA6B /* Extension.swift in Sources */,
+				EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
