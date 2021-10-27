@@ -22,6 +22,7 @@
 		EE63BD312723126500745BF3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE63BD302723126500745BF3 /* GoogleService-Info.plist */; };
 		EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D125272867B70000D09E /* PhotoSelectorController.swift */; };
 		EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */; };
+		EE88D12B272955F50000D09E /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		EE63BD302723126500745BF3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EE88D125272867B70000D09E /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
+		EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				EE88D125272867B70000D09E /* PhotoSelectorController.swift */,
 				EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */,
+				EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */,
 			);
 			path = NewPost;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */,
 				EE55BA3A2723E8FD00109530 /* UserProfileController.swift in Sources */,
 				EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */,
+				EE88D12B272955F50000D09E /* PhotoSelectorHeader.swift in Sources */,
 				EE55BA402726AB4300109530 /* LoginController.swift in Sources */,
 				EE55BA382723E61700109530 /* TabBarController.swift in Sources */,
 				EE2709562720153E0051CA6B /* Extension.swift in Sources */,
