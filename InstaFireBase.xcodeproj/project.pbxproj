@@ -28,6 +28,7 @@
 		EE88D132272AD8DE0000D09E /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D131272AD8DE0000D09E /* UserProfilePhotoCell.swift */; };
 		EE88D136272AF1130000D09E /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D135272AF1130000D09E /* CustomImageView.swift */; };
 		EE88D139272AFE4B0000D09E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D138272AFE4B0000D09E /* HomeController.swift */; };
+		EE88D13B272B02880000D09E /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13A272B02880000D09E /* HomeControllerCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		EE88D131272AD8DE0000D09E /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 		EE88D135272AF1130000D09E /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		EE88D138272AFE4B0000D09E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		EE88D13A272B02880000D09E /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				EE88D138272AFE4B0000D09E /* HomeController.swift */,
+				EE88D13A272B02880000D09E /* HomeControllerCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */,
 				EE88D12B272955F50000D09E /* PhotoSelectorHeader.swift in Sources */,
 				EE55BA402726AB4300109530 /* LoginController.swift in Sources */,
+				EE88D13B272B02880000D09E /* HomeControllerCell.swift in Sources */,
 				EE55BA382723E61700109530 /* TabBarController.swift in Sources */,
 				EE88D139272AFE4B0000D09E /* HomeController.swift in Sources */,
 				EE88D132272AD8DE0000D09E /* UserProfilePhotoCell.swift in Sources */,

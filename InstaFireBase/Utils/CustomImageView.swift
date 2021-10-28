@@ -7,10 +7,15 @@
 
 import Foundation
 import UIKit
+var imageCache = [String : UIImage]()
 class CustomImageView: UIImageView {
     var lastURL: String?
     func loadImage(urlString: String) {
         lastURL = urlString
+        if let cachedImage = imageCache[urlString] {
+            self.image = cachedImage
+            return 
+        }
         guard let url = URL(string: urlString) else {return}
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -19,8 +24,10 @@ class CustomImageView: UIImageView {
             }
             if url.absoluteString != self.lastURL {return}
             guard let data = data else {return}
+            let photoImage = UIImage(data: data)
+            imageCache[url.absoluteString] = photoImage
             DispatchQueue.main.async {
-                self.image = UIImage(data: data)
+                self.image = photoImage
             }
             
         }.resume()

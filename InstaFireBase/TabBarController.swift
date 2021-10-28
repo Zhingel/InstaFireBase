@@ -46,11 +46,11 @@ class MainTabBarController : UITabBarController, UITabBarControllerDelegate {
         return true
     }
     func setupViewControllers() {
-        let homeNavController = setupNavigationController(imageName: "home_unselected", selectedImageName: "home_selected")
+        let layout = UICollectionViewFlowLayout()
+        let homeNavController = setupNavigationController(imageName: "home_unselected", selectedImageName: "home_selected", viewController: HomeController(collectionViewLayout: layout))
         let searchNavController = setupNavigationController(imageName: "search_unselected", selectedImageName: "search_selected")
         let plusNavController = setupNavigationController(imageName: "plus_unselected", selectedImageName: "plus_selected")
         let likeNavController = setupNavigationController(imageName: "like_unselected", selectedImageName: "like_selected")
-        let layout = UICollectionViewFlowLayout()
         let userProfileController = UserProfileController(collectionViewLayout: layout)
         let profileNavigationController = setupNavigationController(imageName: "profile_unselected", selectedImageName: "profile_selected", viewController: userProfileController)
         tabBar.tintColor = .black

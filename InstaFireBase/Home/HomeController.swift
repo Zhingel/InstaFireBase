@@ -7,10 +7,46 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseDatabase
 
-class HomeController: UICollectionViewController {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    var posts = [Post]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        collectionView.register(HomeControllerCell.self, forCellWithReuseIdentifier: "cell")
+        setupNavigationBar()
+        fetchData()
+    }
+    fileprivate func fetchData() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.observeSingleEvent(of: .value, with: { snapshot in
+            guard let dictionaries = snapshot.value as? [String: Any] else {return}
+            dictionaries.forEach { (key, value) in
+                guard let dictionary = value as? [String: Any] else {return}
+                let post = Post(dictionary: dictionary)
+                self.posts.append(post)
+            }
+            self.collectionView.reloadData()
+        }) { (err) in
+            print(err)
+        }
+
+    }
+    fileprivate func setupNavigationBar() {
+        navigationItem.titleView = UIImageView(image: UIImage(named: "logo2"))
+    }
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        posts.count
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: view.bounds.width, height: 200)
+    }
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeControllerCell
+        cell.post = posts[indexPath.item]
+        return cell
     }
 }
