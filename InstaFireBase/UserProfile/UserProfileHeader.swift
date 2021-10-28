@@ -10,13 +10,14 @@ import UIKit
 class UserProfileHeader: UICollectionViewCell {
     var user: User? {
         didSet {
-            fetchImageProfile()
+            guard let profileImageURL = user?.profileImageURL else {return}
+            profileImage.loadImage(urlString: profileImageURL)
             usernameLabel.text = user?.username
         }
     }
-    let profileImage: UIImageView = {
-        let image = UIImageView()
-        image.backgroundColor = .red
+    let profileImage: CustomImageView = {
+        let image = CustomImageView()
+        image.backgroundColor = .white
         image.layer.cornerRadius = 90/2
         image.clipsToBounds = true
         return image
@@ -116,22 +117,6 @@ class UserProfileHeader: UICollectionViewCell {
         stackView.constraints(top: nil, bottom: self.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 40)
         dividerUpper.constraints(top: nil, bottom: stackView.topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0.5)
         dividerDown.constraints(top: stackView.bottomAnchor , bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0.5)
-    }
-     
-    func fetchImageProfile() {
-        guard let profileImageURL = user?.profileImageURL else {return}
-        guard let url = URL(string: profileImageURL) else {return}
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error {
-                print("Failed to fetch profile Image:", error)
-                return
-            }
-            guard let data = data else {return}
-            let image = UIImage(data: data)
-            DispatchQueue.main.async {
-                self.profileImage.image = image
-            }
-        }.resume()
     }
     
     required init?(coder: NSCoder) {

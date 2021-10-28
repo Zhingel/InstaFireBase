@@ -25,22 +25,14 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)
-        ref.observeSingleEvent(of: .value) { snapshot in
-            guard let dictionaries = snapshot.value as? [String : Any] else {return}
-            dictionaries.forEach { (key, value) in
-//                print("Key: \(key), Value: \(value)")
-                guard let dictionary = value as? [String : Any] else {return}
-                let post = Post(dictionary: dictionary)
-                self.posts.append(post)
-                
-                
-            }
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String : Any] else {return}
+            let post = Post(dictionary: dictionary)
+            self.posts.append(post)
             self.collectionView.reloadData()
-        } withCancel: { error in
+        }) { error in
             print("Failed to download", error)
         }
-
-        
     }
     
     @objc func logOutMethod() {
