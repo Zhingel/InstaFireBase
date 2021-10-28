@@ -11,14 +11,36 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class UserProfileController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    var posts = [Post]()
     var user: User?
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: "Cell")
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader , withReuseIdentifier: "headerID")
         collectionView.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         fetchUsers()
+        fetchPosts()
+    }
+    fileprivate func fetchPosts() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.observeSingleEvent(of: .value) { snapshot in
+            guard let dictionaries = snapshot.value as? [String : Any] else {return}
+            dictionaries.forEach { (key, value) in
+//                print("Key: \(key), Value: \(value)")
+                guard let dictionary = value as? [String : Any] else {return}
+                let post = Post(dictionary: dictionary)
+                self.posts.append(post)
+                
+                
+            }
+            self.collectionView.reloadData()
+        } withCancel: { error in
+            print("Failed to download", error)
+        }
+
+        
     }
     
     @objc func logOutMethod() {
@@ -71,11 +93,11 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        posts.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = .lightGray
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! UserProfilePhotoCell
+        cell.post = posts[indexPath.item]
         return cell
     }
 }

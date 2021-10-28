@@ -24,6 +24,8 @@
 		EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */; };
 		EE88D12B272955F50000D09E /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */; };
 		EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D12C2729B1D10000D09E /* EditTextViewController.swift */; };
+		EE88D12F272AD41C0000D09E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D12E272AD41C0000D09E /* Post.swift */; };
+		EE88D132272AD8DE0000D09E /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D131272AD8DE0000D09E /* UserProfilePhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		EE88D127272949CE0000D09E /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		EE88D12C2729B1D10000D09E /* EditTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextViewController.swift; sourceTree = "<group>"; };
+		EE88D12E272AD41C0000D09E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EE88D131272AD8DE0000D09E /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 			children = (
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
+				EE88D130272AD4220000D09E /* Models */,
 				EE2BBEA2271F318B004D61DD /* ViewController.swift */,
 				EE88D129272949E90000D09E /* NewPost */,
 				EE55BA372723E61700109530 /* TabBarController.swift */,
@@ -121,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				EE55BA392723E8FD00109530 /* UserProfileController.swift */,
+				EE88D131272AD8DE0000D09E /* UserProfilePhotoCell.swift */,
 				EE55BA3D27255D1F00109530 /* UserProfileHeader.swift */,
 			);
 			path = UserProfile;
@@ -143,6 +149,14 @@
 				EE88D12A272955F50000D09E /* PhotoSelectorHeader.swift */,
 			);
 			path = NewPost;
+			sourceTree = "<group>";
+		};
+		EE88D130272AD4220000D09E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EE88D12E272AD41C0000D09E /* Post.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,12 +279,14 @@
 				EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */,
 				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
+				EE88D12F272AD41C0000D09E /* Post.swift in Sources */,
 				EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */,
 				EE55BA3A2723E8FD00109530 /* UserProfileController.swift in Sources */,
 				EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */,
 				EE88D12B272955F50000D09E /* PhotoSelectorHeader.swift in Sources */,
 				EE55BA402726AB4300109530 /* LoginController.swift in Sources */,
 				EE55BA382723E61700109530 /* TabBarController.swift in Sources */,
+				EE88D132272AD8DE0000D09E /* UserProfilePhotoCell.swift in Sources */,
 				EE2709562720153E0051CA6B /* Extension.swift in Sources */,
 				EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */,
 			);
