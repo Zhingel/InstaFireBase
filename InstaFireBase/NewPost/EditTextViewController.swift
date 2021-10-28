@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
+import FirebaseAuth
 
 class EditTextViewController: UIViewController {
     var selectedImage: UIImage? {
@@ -53,7 +56,47 @@ class EditTextViewController: UIViewController {
         textView.constraints(top: containerView.topAnchor, bottom: containerView.bottomAnchor, left: imageView.rightAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 4, paddingRight: 0, width: 0, height: 0 )
     }
     @objc func handleShare() {
-        print("share")
+        guard let image = selectedImage else {return}
+        //guard let text = textView.text, text.count > 0 else {return}
+        guard let uploadData = image.jpegData(compressionQuality: 0.5) else {return}
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        let filename = UUID().uuidString
+        let storageRef = Storage.storage().reference().child("posts").child(filename)
+        storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+            if let error = error {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Failed to upload image")
+                return
+            }
+            storageRef.downloadURL(completion: { (url, error) in
+                    if error != nil {
+                        print(error!.localizedDescription)
+                        return
+                    }
+                if let profileImageUrl = url?.absoluteString {
+                    print("Success", profileImageUrl)
+                    self.saveDataBaseWithImageURL(imageURL: profileImageUrl)
+                    
+                }
+            })
+        }
+    }
+    fileprivate func saveDataBaseWithImageURL(imageURL: String) {
+        guard let postImage = selectedImage else {return}
+        guard let text = textView.text else {return}
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let userPostRef = Database.database().reference().child("posts").child(uid)
+        let ref = userPostRef.childByAutoId()
+        let values = ["imageURL" : imageURL, "text" : text, "imageWidth" : postImage.size.width, "imageHeight" : postImage.size.height, "creationDate" : Date().timeIntervalSince1970] as [String : Any]
+        ref.updateChildValues(values) { (err, ref) in
+            if let err = err {
+                self.navigationItem.rightBarButtonItem?.isEnabled = true
+                print("Failed")
+                return
+            }
+            print("Successfuly save to db")
+            self.dismiss(animated: true)
+        }
     }
     @objc func handleBack() {
         print("go back")

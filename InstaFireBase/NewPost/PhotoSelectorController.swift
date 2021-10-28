@@ -66,7 +66,7 @@ class PhotoSelectorController: UICollectionViewController, UICollectionViewDeleg
     }
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? PhotoSelectorCell {
-          //  cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6608029801)
+            cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6608029801)
             selectedImage = images[indexPath.item]
            
             collectionView.reloadData()
