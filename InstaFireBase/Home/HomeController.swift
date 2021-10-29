@@ -42,7 +42,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         posts.count
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: view.bounds.width, height: 200)
+        let width = view.bounds.width
+        let height = 40 + 8 + 8 + width + 100
+        return CGSize(width: width, height: height)
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeControllerCell

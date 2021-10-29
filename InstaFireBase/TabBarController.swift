@@ -31,15 +31,6 @@ class MainTabBarController : UITabBarController, UITabBarControllerDelegate {
                 let navController = UINavigationController(rootViewController: photoSelectorController)
                 navController.navigationBar.scrollEdgeAppearance = navController.navigationBar.standardAppearance
                 navController.modalPresentationStyle = .fullScreen
-                let appearance = UINavigationBarAppearance()
-                   appearance.configureWithDefaultBackground()
-                   appearance.backgroundColor = UIColor.black
-//                   appearance.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.green]
-//                   appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.green]
-
-                navController.navigationBar.standardAppearance = appearance
-                navController.navigationBar.scrollEdgeAppearance = appearance
-                navController.navigationBar.compactAppearance = appearance
                 present(navController, animated: true)
                 return false
             }

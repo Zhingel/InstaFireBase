@@ -21,11 +21,84 @@ class HomeControllerCell: UICollectionViewCell {
         iv.clipsToBounds = true
         return iv
     }()
+    let userProfileImage: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.backgroundColor = .blue
+        iv.clipsToBounds = true
+        return iv
+    }()
+    let optionsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Username"
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        return label
+    }()
+    let likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "like_unselected"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    let commentButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "comment"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    let messageButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "send2"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    let ribbonButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "ribbon"), for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    let captionLabel: UILabel = {
+        let label = UILabel()
+        let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: " Some caption text that will perhaps wrap onto the next line",attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 4)]))
+        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.gray]))
+        label.numberOfLines = 0
+        label.attributedText = attributedText
+        return label
+    }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
         addSubview(imageView)
-        imageView.constraints(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
+        addSubview(userProfileImage)
+        addSubview(optionsButton)
+        addSubview(usernameLabel)
+        addSubview(ribbonButton)
+        addSubview(captionLabel)
+        userProfileImage.constraints(top: topAnchor, bottom: nil, left: leftAnchor, right: nil, paddingTop: 8, paddingBottom: 0, paddingLeft: 8, paddingRight: 0, width: 40, height: 40)
+        userProfileImage.layer.cornerRadius = 20
+        imageView.constraints(top: userProfileImage.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 0, paddingLeft: 0, paddingRight: 0, width: 0, height: 0)
+        imageView.heightAnchor.constraint(equalToConstant: self.bounds.width).isActive = true
+        optionsButton.constraints(top: topAnchor, bottom: nil, left: nil, right: rightAnchor, paddingTop: 16, paddingBottom: 0, paddingLeft: 0, paddingRight: 8, width: 0, height: 0)
+        usernameLabel.constraints(top: topAnchor, bottom: nil, left: userProfileImage.rightAnchor, right: optionsButton.rightAnchor, paddingTop: 20, paddingBottom: 0, paddingLeft: 8, paddingRight: 8, width: 0, height: 0)
+        ribbonButton.constraints(top: imageView.bottomAnchor, bottom: nil, left: nil, right: rightAnchor, paddingTop: 8, paddingBottom: 0, paddingLeft: 0, paddingRight: 10, width: 0, height: 0)
+        setupStackView()
+        captionLabel.constraints(top: ribbonButton.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 8, paddingLeft: 8, paddingRight: 8, width: 0, height: 0)
+    }
+    fileprivate func setupStackView() {
+        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, messageButton])
+        addSubview(stackView)
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 14
+        stackView.constraints(top: imageView.bottomAnchor, bottom: nil, left: leftAnchor, right: nil, paddingTop: 8, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 0, height: 0)
     }
     
     required init?(coder: NSCoder) {
