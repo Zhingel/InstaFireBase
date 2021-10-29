@@ -13,6 +13,7 @@ class HomeControllerCell: UICollectionViewCell {
         didSet {
             guard let imageURL = post?.imageURL else {return}
             imageView.loadImage(urlString: imageURL)
+            usernameLabel.text = post?.user.username
         }
     }
     let imageView: CustomImageView = {

@@ -29,6 +29,7 @@
 		EE88D136272AF1130000D09E /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D135272AF1130000D09E /* CustomImageView.swift */; };
 		EE88D139272AFE4B0000D09E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D138272AFE4B0000D09E /* HomeController.swift */; };
 		EE88D13B272B02880000D09E /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13A272B02880000D09E /* HomeControllerCell.swift */; };
+		EE88D13D272C686E0000D09E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13C272C686E0000D09E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		EE88D135272AF1130000D09E /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		EE88D138272AFE4B0000D09E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EE88D13A272B02880000D09E /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
+		EE88D13C272C686E0000D09E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				EE88D12E272AD41C0000D09E /* Post.swift */,
+				EE88D13C272C686E0000D09E /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				EE88D13B272B02880000D09E /* HomeControllerCell.swift in Sources */,
 				EE55BA382723E61700109530 /* TabBarController.swift in Sources */,
 				EE88D139272AFE4B0000D09E /* HomeController.swift in Sources */,
+				EE88D13D272C686E0000D09E /* User.swift in Sources */,
 				EE88D132272AD8DE0000D09E /* UserProfilePhotoCell.swift in Sources */,
 				EE2709562720153E0051CA6B /* Extension.swift in Sources */,
 				EE88D128272949CF0000D09E /* PhotoSelectorCell.swift in Sources */,

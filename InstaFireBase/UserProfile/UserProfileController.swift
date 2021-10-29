@@ -22,19 +22,21 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
         fetchUsers()
         fetchPosts()
     }
+    
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String : Any] else {return}
-            let post = Post(dictionary: dictionary)
-            self.posts.append(post)
+            guard let user = self.user else {return}
+            let post = Post(user: user, dictionary: dictionary)
+            self.posts.insert(post, at: 0)
             self.collectionView.reloadData()
         }) { error in
             print("Failed to download", error)
         }
     }
-    
+  
     @objc func logOutMethod() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: {_ in
@@ -95,11 +97,3 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
 }
 
 
-struct User {
-    let username: String
-    let profileImageURL: String
-    init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageURL = dictionary["profileImageUrl"] as? String ?? ""
-    }
-}
