@@ -14,6 +14,9 @@ class HomeControllerCell: UICollectionViewCell {
             guard let imageURL = post?.imageURL else {return}
             imageView.loadImage(urlString: imageURL)
             usernameLabel.text = post?.user.username
+            guard let profileImageURL = post?.user.profileImageURL else {return}
+            userProfileImage.loadImage(urlString: profileImageURL)
+            setupAttributedCaption()
         }
     }
     let imageView: CustomImageView = {
@@ -22,10 +25,10 @@ class HomeControllerCell: UICollectionViewCell {
         iv.clipsToBounds = true
         return iv
     }()
-    let userProfileImage: UIImageView = {
-        let iv = UIImageView()
+    let userProfileImage: CustomImageView = {
+        let iv = CustomImageView()
         iv.contentMode = .scaleAspectFill
-        iv.backgroundColor = .blue
+        iv.backgroundColor = .white
         iv.clipsToBounds = true
         return iv
     }()
@@ -67,12 +70,7 @@ class HomeControllerCell: UICollectionViewCell {
     }()
     let captionLabel: UILabel = {
         let label = UILabel()
-        let attributedText = NSMutableAttributedString(string: "Username", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: " Some caption text that will perhaps wrap onto the next line",attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
-        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 4)]))
-        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.gray]))
         label.numberOfLines = 0
-        label.attributedText = attributedText
         return label
     }()
     override init(frame: CGRect) {
@@ -100,6 +98,14 @@ class HomeControllerCell: UICollectionViewCell {
         stackView.distribution = .equalSpacing
         stackView.spacing = 14
         stackView.constraints(top: imageView.bottomAnchor, bottom: nil, left: leftAnchor, right: nil, paddingTop: 8, paddingBottom: 0, paddingLeft: 10, paddingRight: 0, width: 0, height: 0)
+    }
+    fileprivate func setupAttributedCaption() {
+        guard let post = self.post else {return}
+        let attributedText = NSMutableAttributedString(string: post.user.username, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: " \(post.caption)",attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)]))
+        attributedText.append(NSAttributedString(string: "\n\n", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 4)]))
+        attributedText.append(NSAttributedString(string: "1 week ago", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor : UIColor.gray]))
+        self.captionLabel.attributedText = attributedText
     }
     
     required init?(coder: NSCoder) {

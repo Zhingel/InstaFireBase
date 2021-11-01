@@ -55,13 +55,10 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
     }
     fileprivate func fetchUsers() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { snapshot in
-            guard let dictionary = snapshot.value as? [String: Any] else {return}
-            self.user = User(dictionary: dictionary)
+        FirebaseApp.fetchUserWithUID(uid: uid) { user in
+            self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
-        }) {err in
-            print("fail fetch user", err)
         }
     }
     

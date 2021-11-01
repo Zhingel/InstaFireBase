@@ -7,6 +7,21 @@
 
 import Foundation
 import UIKit
+import Firebase
+
+extension FirebaseApp {
+    static func fetchUserWithUID(uid: String, completion: @escaping (User) -> ()) {
+        print("with user", uid)
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value) { snapshot in
+            guard let userDictionary = snapshot.value as? [String: Any] else {return}
+            let user = User(uid: uid, dictionary: userDictionary)
+            print(user.username)
+            completion(user)
+        } withCancel: { err in
+            print(err)
+        }
+    }
+}
 
 extension UITextField {
     convenience init(placeholder: String, backgroundColor: UIColor = UIColor(white: 0, alpha: 0.03), borderStyle: BorderStyle = .roundedRect, font: UIFont = UIFont.systemFont(ofSize: 14)) {
