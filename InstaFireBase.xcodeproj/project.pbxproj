@@ -11,7 +11,7 @@
 		EE2709562720153E0051CA6B /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2709552720153E0051CA6B /* Extension.swift */; };
 		EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBE9E271F318B004D61DD /* AppDelegate.swift */; };
 		EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */; };
-		EE2BBEA3271F318B004D61DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBEA2271F318B004D61DD /* ViewController.swift */; };
+		EE2BBEA3271F318B004D61DD /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2BBEA2271F318B004D61DD /* SignUpController.swift */; };
 		EE2BBEA6271F318B004D61DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2BBEA4271F318B004D61DD /* Main.storyboard */; };
 		EE2BBEA8271F318D004D61DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2BBEA7271F318D004D61DD /* Assets.xcassets */; };
 		EE2BBEAB271F318D004D61DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2BBEA9271F318D004D61DD /* LaunchScreen.storyboard */; };
@@ -30,6 +30,7 @@
 		EE88D139272AFE4B0000D09E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D138272AFE4B0000D09E /* HomeController.swift */; };
 		EE88D13B272B02880000D09E /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13A272B02880000D09E /* HomeControllerCell.swift */; };
 		EE88D13D272C686E0000D09E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13C272C686E0000D09E /* User.swift */; };
+		EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E4E27300F5200C197FD /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +40,7 @@
 		EE2709552720153E0051CA6B /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		EE2BBE9E271F318B004D61DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EE2BBEA2271F318B004D61DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EE2BBEA2271F318B004D61DD /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		EE2BBEA5271F318B004D61DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EE2BBEA7271F318D004D61DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2BBEAA271F318D004D61DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		EE88D138272AFE4B0000D09E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EE88D13A272B02880000D09E /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
 		EE88D13C272C686E0000D09E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EEC78E4E27300F5200C197FD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,13 +117,14 @@
 			children = (
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
-				EE88D130272AD4220000D09E /* Models */,
-				EE2BBEA2271F318B004D61DD /* ViewController.swift */,
-				EE88D129272949E90000D09E /* NewPost */,
 				EE55BA372723E61700109530 /* TabBarController.swift */,
+				EE2BBEA2271F318B004D61DD /* SignUpController.swift */,
+				EE55BA3F2726AB4300109530 /* LoginController.swift */,
 				EE88D137272AFE3C0000D09E /* Home */,
-				EE55BA412726AB4900109530 /* Login */,
+				EEC78E4D27300E6900C197FD /* Search */,
+				EE88D129272949E90000D09E /* NewPost */,
 				EE55BA3C27255CF300109530 /* UserProfile */,
+				EE88D130272AD4220000D09E /* Models */,
 				EE270957272018EF0051CA6B /* Utils */,
 				EE2BBEA4271F318B004D61DD /* Main.storyboard */,
 				EE63BD302723126500745BF3 /* GoogleService-Info.plist */,
@@ -140,14 +143,6 @@
 				EE55BA3D27255D1F00109530 /* UserProfileHeader.swift */,
 			);
 			path = UserProfile;
-			sourceTree = "<group>";
-		};
-		EE55BA412726AB4900109530 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				EE55BA3F2726AB4300109530 /* LoginController.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		EE88D129272949E90000D09E /* NewPost */ = {
@@ -177,6 +172,14 @@
 				EE88D13A272B02880000D09E /* HomeControllerCell.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		EEC78E4D27300E6900C197FD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				EEC78E4E27300F5200C197FD /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,10 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE2BBEA3271F318B004D61DD /* ViewController.swift in Sources */,
+				EE2BBEA3271F318B004D61DD /* SignUpController.swift in Sources */,
 				EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */,
 				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
+				EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */,
 				EE88D136272AF1130000D09E /* CustomImageView.swift in Sources */,
 				EE88D12F272AD41C0000D09E /* Post.swift in Sources */,
 				EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */,
