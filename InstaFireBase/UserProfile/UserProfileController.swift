@@ -13,6 +13,7 @@ import FirebaseDatabase
 class UserProfileController : UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var posts = [Post]()
     var user: User?
+    var userId: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: "Cell")
@@ -20,11 +21,11 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
         collectionView.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(logOutMethod))
         fetchUsers()
-        fetchPosts()
+        
     }
     
     fileprivate func fetchPosts() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let uid = self.user?.uid else {return}
         let ref = Database.database().reference().child("posts").child(uid)
         ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
             guard let dictionary = snapshot.value as? [String : Any] else {return}
@@ -54,11 +55,13 @@ class UserProfileController : UICollectionViewController, UICollectionViewDelega
         present(alertController, animated: true)
     }
     fileprivate func fetchUsers() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let uid = userId ?? (Auth.auth().currentUser?.uid ?? "")
+//        guard let uid = Auth.auth().currentUser?.uid else {return}
         FirebaseApp.fetchUserWithUID(uid: uid) { user in
             self.user = user
             self.navigationItem.title = self.user?.username
             self.collectionView.reloadData()
+            self.fetchPosts() 
         }
     }
     
