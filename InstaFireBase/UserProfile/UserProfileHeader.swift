@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
     var user: User? {
@@ -13,6 +16,7 @@ class UserProfileHeader: UICollectionViewCell {
             guard let profileImageURL = user?.profileImageURL else {return}
             profileImage.loadImage(urlString: profileImageURL)
             usernameLabel.text = user?.username
+            setupFollowButton()
         }
     }
     let profileImage: CustomImageView = {
@@ -74,15 +78,15 @@ class UserProfileHeader: UICollectionViewCell {
     }()
     let editProfileButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Edit Profile", for: .normal)
+       // button.setTitle("Edit Profile", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 1
-        button.layer.cornerRadius = 3 
+        button.layer.cornerRadius = 3
+        button.addTarget(self, action: #selector(handleFollowButton), for: .touchUpInside)
         return button
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,6 +98,56 @@ class UserProfileHeader: UICollectionViewCell {
         
         tabbarView()
         followersBarView()
+    }
+    @objc fileprivate func handleFollowButton() {
+        guard let profileUID = Auth.auth().currentUser?.uid else {return}
+        guard let userUID = user?.uid else {return}
+        let ref = Database.database().reference().child("following").child(profileUID)
+        if editProfileButton.titleLabel?.text == "Unfollow" {
+            ref.child(userUID).removeValue { error, ref in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self.editProfileButton.setTitle("Follow", for: .normal)
+                self.editProfileButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 257)
+                self.editProfileButton.setTitleColor(.white, for: .normal)
+                self.editProfileButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+            }
+        } else {
+            let values = [userUID : 1]
+            ref.updateChildValues(values) { error, ref in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                self.editProfileButton.setTitle("Unfollow", for: .normal)
+                self.editProfileButton.backgroundColor = .white
+                self.editProfileButton.setTitleColor(.black, for: .normal)
+            }
+        }
+    }
+    fileprivate func setupFollowButton() {
+        guard let profileUID = Auth.auth().currentUser?.uid else {return}
+        guard let userUID = user?.uid else {return}
+        if profileUID == userUID {
+            editProfileButton.setTitle("Edit profile", for: .normal)
+        } else {
+            let ref = Database.database().reference().child("following").child(profileUID).child(userUID)
+            ref.observeSingleEvent(of: .value) { snapshot in
+                if let isFollowing = snapshot.value as? Int, isFollowing == 1 {
+                    self.editProfileButton.setTitle("Unfollow", for: .normal)
+                } else {
+                    self.editProfileButton.setTitle("Follow", for: .normal)
+                    self.editProfileButton.backgroundColor = UIColor.rgb(red: 17, green: 154, blue: 257)
+                    self.editProfileButton.setTitleColor(.white, for: .normal)
+                    self.editProfileButton.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+                }
+                
+            } withCancel: { error in
+                print(error)
+            }
+        }
     }
     fileprivate func followersBarView() {
         let stackView = UIStackView(arrangedSubviews: [postsLabel, followersLabel, followingLabel])
