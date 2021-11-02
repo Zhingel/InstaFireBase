@@ -9,9 +9,10 @@ import Foundation
 import UIKit
 var imageCache = [String : UIImage]()
 class CustomImageView: UIImageView {
-    var lastURL: String?
+    var lastURL: String? 
     func loadImage(urlString: String) {
         lastURL = urlString
+        self.image = nil
         if let cachedImage = imageCache[urlString] {
             self.image = cachedImage
             return 

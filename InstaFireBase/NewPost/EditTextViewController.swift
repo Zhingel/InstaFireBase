@@ -96,6 +96,8 @@ class EditTextViewController: UIViewController {
             }
             print("Successfuly save to db")
             self.dismiss(animated: true)
+            let name = NSNotification.Name(rawValue: "UpdateFeed")
+            NotificationCenter.default.post(name: name, object: nil)
         }
     }
     @objc func handleBack() {

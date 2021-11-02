@@ -15,9 +15,38 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     var posts = [Post]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        let name = NSNotification.Name(rawValue: "UpdateFeed")
+        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateFeed), name: name, object: nil)
         collectionView.register(HomeControllerCell.self, forCellWithReuseIdentifier: "cell")
         setupNavigationBar()
         fetchData()
+        fetchFollowingUserUIDs()
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+    }
+    @objc fileprivate func handleUpdateFeed() {
+        handleRefresh()
+    }
+    @objc fileprivate func handleRefresh() {
+        posts.removeAll()
+        fetchData()
+        fetchFollowingUserUIDs()
+    }
+    fileprivate func fetchFollowingUserUIDs() {
+        guard let userProfileUID = Auth.auth().currentUser?.uid else {return}
+        let ref = Database.database().reference().child("following").child(userProfileUID)
+        ref.observeSingleEvent(of: .value) { snapshot in
+            guard let dictionaries = snapshot.value as? [String: Any] else {return}
+            dictionaries.forEach { (key,value) in
+                FirebaseApp.fetchUserWithUID(uid: key) { user in
+                    self.fetchPostWithUser(user: user)
+                }
+            }
+        } withCancel: { error in
+            print(error)
+        }
+
     }
     fileprivate func fetchData() {
         guard let uid = Auth.auth().currentUser?.uid else {return}
@@ -29,12 +58,16 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let uid = user.uid
         let ref = Database.database().reference().child("posts").child(uid)
         ref.observeSingleEvent(of: .value, with: { snapshot in
+            self.collectionView.refreshControl?.endRefreshing()
             guard let dictionaries = snapshot.value as? [String: Any] else { return }
             dictionaries.forEach({ (key, value) in
                 guard let dictionary = value as? [String: Any] else { return }
                 let post = Post(user: user, dictionary: dictionary)
                 self.posts.append(post)
             })
+            self.posts.sort {(p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate)  == .orderedDescending
+            }
             self.collectionView?.reloadData()
         }) { error in
             print("Failed to download", error)
