@@ -47,6 +47,8 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+           view.addGestureRecognizer(tap)
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = .white
         emailLogin.addTarget(self, action: #selector(handleTextInputChanged), for: .editingChanged)
@@ -93,5 +95,8 @@ class LoginController: UIViewController {
     @objc func switchToSignUp() {
         let signUpController = SignUpController()
         navigationController?.pushViewController(signUpController, animated: true)
+    }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

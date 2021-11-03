@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
 
 extension FirebaseApp {
     static func fetchUserWithUID(uid: String, completion: @escaping (User) -> ()) {

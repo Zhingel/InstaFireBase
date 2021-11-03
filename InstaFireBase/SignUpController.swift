@@ -53,6 +53,8 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate & UINa
         view.backgroundColor = .white
         setupTextFields()
         setupSignUpView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+           view.addGestureRecognizer(tap)
     }
     
 
@@ -138,6 +140,9 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate & UINa
             }
         })
     }
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    } 
     fileprivate func setupTextFields() {
         emailTextfield.addTarget(self, action: #selector(handleTextInputChanged), for: .editingChanged)
         userNameTextfield.addTarget(self, action: #selector(handleTextInputChanged), for: .editingChanged)
