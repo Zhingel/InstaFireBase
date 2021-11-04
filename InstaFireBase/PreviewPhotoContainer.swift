@@ -28,6 +28,18 @@ class PreviewPhotoContainer: UIViewController {
         iv.clipsToBounds = true
         return iv
     }()
+    let savedImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        return iv
+    }()
+    let savedView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 5
+        return view
+    }()
     let saveButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "save_shadow"), for: .normal)
@@ -40,12 +52,32 @@ class PreviewPhotoContainer: UIViewController {
     }
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            // we got back an error!
             print(error)
            
         } else {
-            print("Sucess")
+            ////////////
+            savedImageView.image = self.selectedImage
+            showSavedImage()
+            
         }
+    }
+    func showSavedImage() {
+        view.addSubview(savedView)
+        savedView.addSubview(savedImageView)
+        savedImageView.constraints(top: savedView.topAnchor, bottom: savedView.bottomAnchor, left: savedView.leftAnchor, right: savedView.rightAnchor, paddingTop: 5, paddingBottom: -5, paddingLeft: 5, paddingRight: 5, width: 0, height: 0)
+        savedView.constraints(top: nil, bottom: saveButton.topAnchor, left: view.leftAnchor, right: nil, paddingTop: 0, paddingBottom: -10, paddingLeft: 12, paddingRight: 0, width: 70, height: 70)
+        UIView.animate(withDuration: 0.5, delay: 1, options: [.beginFromCurrentState], animations: {
+//            self.savedView.center.x += 200
+        }) {finish in
+            UIView.animate(withDuration: 0.5, delay: 1, options: [.beginFromCurrentState], animations: {
+            self.savedView.center.x -= 200
+            }) {finish in
+                self.savedView.removeFromSuperview()
+            }
+            self.saveButton.isEnabled = false
+            self.saveButton.alpha = 0.7
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()

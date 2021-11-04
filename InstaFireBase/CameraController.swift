@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
+    
     var selectedImage: UIImage?
     let headerView: UIView = {
         let view = UIView()
