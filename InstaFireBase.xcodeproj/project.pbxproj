@@ -33,6 +33,7 @@
 		EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E4E27300F5200C197FD /* SearchViewController.swift */; };
 		EEC78E51273019FF00C197FD /* SearchViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E50273019FF00C197FD /* SearchViewControllerCell.swift */; };
 		EEC78E532731931D00C197FD /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E522731931D00C197FD /* CameraController.swift */; };
+		EEC78E552732EC9F00C197FD /* PreviewPhotoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E542732EC9F00C197FD /* PreviewPhotoContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		EEC78E4E27300F5200C197FD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EEC78E50273019FF00C197FD /* SearchViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerCell.swift; sourceTree = "<group>"; };
 		EEC78E522731931D00C197FD /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		EEC78E542732EC9F00C197FD /* PreviewPhotoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
 				EEC78E522731931D00C197FD /* CameraController.swift */,
+				EEC78E542732EC9F00C197FD /* PreviewPhotoContainer.swift */,
 				EE55BA372723E61700109530 /* TabBarController.swift */,
 				EE2BBEA2271F318B004D61DD /* SignUpController.swift */,
 				EE55BA3F2726AB4300109530 /* LoginController.swift */,
@@ -307,6 +310,7 @@
 				EE2BBEA3271F318B004D61DD /* SignUpController.swift in Sources */,
 				EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */,
 				EEC78E51273019FF00C197FD /* SearchViewControllerCell.swift in Sources */,
+				EEC78E552732EC9F00C197FD /* PreviewPhotoContainer.swift in Sources */,
 				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
 				EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */,

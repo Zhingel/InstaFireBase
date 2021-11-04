@@ -80,8 +80,9 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     @objc fileprivate func handleCamera() {
         let cameraController = CameraController()
-        cameraController.modalPresentationStyle = .fullScreen
-        present(cameraController, animated: true)
+        let navController = UINavigationController(rootViewController: cameraController)
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         posts.count

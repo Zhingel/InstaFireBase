@@ -21,7 +21,8 @@ class EditTextViewController: UIViewController {
         let iv = UIImageView()
         let vc = PhotoSelectorController()
         iv.backgroundColor = .black
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         return iv
     }()
     let textView: UITextView = {
@@ -32,6 +33,7 @@ class EditTextViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        navigationController?.navigationBar.isHidden = false
         let appearance = UINavigationBarAppearance()
            appearance.configureWithDefaultBackground()
         navigationController?.navigationBar.standardAppearance = appearance
