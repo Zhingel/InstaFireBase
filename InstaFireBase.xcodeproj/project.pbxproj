@@ -34,6 +34,8 @@
 		EEC78E51273019FF00C197FD /* SearchViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E50273019FF00C197FD /* SearchViewControllerCell.swift */; };
 		EEC78E532731931D00C197FD /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E522731931D00C197FD /* CameraController.swift */; };
 		EEC78E552732EC9F00C197FD /* PreviewPhotoContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E542732EC9F00C197FD /* PreviewPhotoContainer.swift */; };
+		EEC78E572733ECED00C197FD /* CustomTransitionPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E562733ECED00C197FD /* CustomTransitionPresentor.swift */; };
+		EEC78E7D27342E8E00C197FD /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E7C27342E8E00C197FD /* CommentsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		EEC78E50273019FF00C197FD /* SearchViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerCell.swift; sourceTree = "<group>"; };
 		EEC78E522731931D00C197FD /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		EEC78E542732EC9F00C197FD /* PreviewPhotoContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainer.swift; sourceTree = "<group>"; };
+		EEC78E562733ECED00C197FD /* CustomTransitionPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransitionPresentor.swift; sourceTree = "<group>"; };
+		EEC78E7C27342E8E00C197FD /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				EE2BBE9E271F318B004D61DD /* AppDelegate.swift */,
 				EE2BBEA0271F318B004D61DD /* SceneDelegate.swift */,
 				EEC78E522731931D00C197FD /* CameraController.swift */,
+				EEC78E562733ECED00C197FD /* CustomTransitionPresentor.swift */,
 				EEC78E542732EC9F00C197FD /* PreviewPhotoContainer.swift */,
 				EE55BA372723E61700109530 /* TabBarController.swift */,
 				EE2BBEA2271F318B004D61DD /* SignUpController.swift */,
@@ -178,6 +183,7 @@
 			children = (
 				EE88D138272AFE4B0000D09E /* HomeController.swift */,
 				EE88D13A272B02880000D09E /* HomeControllerCell.swift */,
+				EEC78E7C27342E8E00C197FD /* CommentsController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -307,10 +313,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC78E572733ECED00C197FD /* CustomTransitionPresentor.swift in Sources */,
 				EE2BBEA3271F318B004D61DD /* SignUpController.swift in Sources */,
 				EE88D12D2729B1D10000D09E /* EditTextViewController.swift in Sources */,
 				EEC78E51273019FF00C197FD /* SearchViewControllerCell.swift in Sources */,
 				EEC78E552732EC9F00C197FD /* PreviewPhotoContainer.swift in Sources */,
+				EEC78E7D27342E8E00C197FD /* CommentsController.swift in Sources */,
 				EE55BA3E27255D1F00109530 /* UserProfileHeader.swift in Sources */,
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
 				EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */,

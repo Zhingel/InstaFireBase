@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import AVFoundation
 
-class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewControllerTransitioningDelegate {
     
     var selectedImage: UIImage?
     let headerView: UIView = {
@@ -68,6 +68,7 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        transitioningDelegate = self
         setupCaptureSession()
         view.addSubview(headerView)
         view.addSubview(footerView)
@@ -81,6 +82,13 @@ class CameraController: UIViewController, AVCapturePhotoCaptureDelegate {
         capturePhotoButton.constraints(top: nil, bottom: view.bottomAnchor, left: nil, right: nil, paddingTop: 0, paddingBottom: -24, paddingLeft: 0, paddingRight: 0, width: 80, height: 80)
         capturePhotoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
+   //MARK: - Animations
+    let customTransitionPresentor = CustomTransitionPresentor()
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? { 
+        return customTransitionPresentor
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
     }

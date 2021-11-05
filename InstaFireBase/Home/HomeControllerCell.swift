@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
+protocol HomePostCellDelegate {
+    func didTapComment(post: Post)
+}
+
 class HomeControllerCell: UICollectionViewCell {
+    var delegate: HomePostCellDelegate?
     var post: Post? {
         didSet {
             guard let imageURL = post?.imageURL else {return}
@@ -54,6 +59,7 @@ class HomeControllerCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "comment"), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
     let messageButton: UIButton = {
@@ -90,6 +96,10 @@ class HomeControllerCell: UICollectionViewCell {
         ribbonButton.constraints(top: imageView.bottomAnchor, bottom: nil, left: nil, right: rightAnchor, paddingTop: 8, paddingBottom: 0, paddingLeft: 0, paddingRight: 10, width: 0, height: 0)
         setupStackView()
         captionLabel.constraints(top: ribbonButton.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 8, paddingLeft: 8, paddingRight: 8, width: 0, height: 0)
+    }
+    @objc fileprivate func handleComment() {
+        guard let post = self.post else {return}
+        delegate?.didTapComment(post: post)
     }
     fileprivate func setupStackView() {
         let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, messageButton])

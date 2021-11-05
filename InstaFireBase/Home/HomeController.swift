@@ -11,7 +11,13 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
+    func didTapComment(post: Post) {
+        print(post.caption)
+        let vc = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     var posts = [Post]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +87,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     @objc fileprivate func handleCamera() {
         let cameraController = CameraController()
         let navController = UINavigationController(rootViewController: cameraController)
-        navController.modalPresentationStyle = .fullScreen
+        navController.modalPresentationStyle = .custom
         present(navController, animated: true)
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -95,6 +101,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeControllerCell
         cell.post = posts[indexPath.item]
+        cell.delegate = self
         return cell
     }
     
