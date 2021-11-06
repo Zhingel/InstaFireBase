@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import Firebase
 
-class CommentsController: UICollectionViewController {
+class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
     var comments = [Comment]()
     var post: Post?
     var user: User?
@@ -27,6 +27,7 @@ class CommentsController: UICollectionViewController {
     }()
     lazy var containerView: UIView = {
         let containerView = UIView()
+        containerView.backgroundColor = .white
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 80)
         let deviderView = UIView()
         deviderView.backgroundColor = .lightGray
@@ -39,10 +40,6 @@ class CommentsController: UICollectionViewController {
         return containerView
     }()
     lazy var textFieldView: UIView = {
-        let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        sendButton.addTarget(self, action: #selector(addComment), for: .touchUpInside)
         let textFieldView = UIView()
         textFieldView.layer.borderWidth = 0.5
         textFieldView.layer.cornerRadius = 20
@@ -53,22 +50,47 @@ class CommentsController: UICollectionViewController {
         commentTextField.constraints(top: textFieldView.topAnchor, bottom: textFieldView.bottomAnchor, left: textFieldView.leftAnchor, right: sendButton.leftAnchor, paddingTop: 8, paddingBottom: -8, paddingLeft: 20, paddingRight: 8, width: 0, height: 0)
         return textFieldView
     }()
-    
+    let sendButton: UIButton = {
+        let sendButton = UIButton(type: .system)
+        sendButton.setTitle("Send", for: .normal)
+        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        sendButton.addTarget(self, action: #selector(addComment), for: .touchUpInside)
+        sendButton.isHidden = true
+        sendButton.alpha = 0.7
+        return sendButton
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
         fetchComments()
+        commentTextField.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+//        ////////////
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: "Cell")
         navigationItem.title = "Comments"
         
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.sendButton.isHidden = false
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.sendButton.isHidden = true
+    }
     @objc func addComment() {
-        print("Inserting comment:", commentTextField.text ?? "")
-        let postId = post?.id ?? ""
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        let comment = ["text" : commentTextField.text ?? "", "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
-        let ref = Database.database().reference().child("comments").child(postId).childByAutoId()
-        ref.updateChildValues(comment)
+        guard let commentText = commentTextField.text else {return}
+        if !commentText.isEmpty {
+            let postId = post?.id ?? ""
+            guard let uid = Auth.auth().currentUser?.uid else {return}
+            let comment = ["text" : commentTextField.text ?? "", "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
+            let ref = Database.database().reference().child("comments").child(postId).childByAutoId()
+            ref.updateChildValues(comment)
+            comments.removeAll()
+            fetchComments()
+        }
     }
     
     fileprivate func fetchData() {
@@ -90,18 +112,38 @@ class CommentsController: UICollectionViewController {
                 let comment = Comment(commentId: key, dictionary: dictionary)
                 self.comments.append(comment)
             }
+            self.comments.sort {(p1, p2) -> Bool in
+                return p1.creationDate.compare(p2.creationDate)  == .orderedDescending
+            }
             self.collectionView.reloadData()
         }
         
     }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        1
+    }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.bounds.width, height: 60)
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        CGSize(width: view.bounds.width, height: 70)
+    }
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! HeaderCell
+        header.post = self.post
+        return header
+    }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         comments.count
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CommentCell
+        cell.comment = comments[indexPath.item]
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 45, right: 0)
     }
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
