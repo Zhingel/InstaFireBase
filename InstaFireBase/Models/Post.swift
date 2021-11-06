@@ -12,6 +12,7 @@ struct Post  {
     let imageURL: String
     let caption: String
     let creationDate: Date
+    var id: String?
     
     init(user: User, dictionary: [String : Any]) {
         self.user = user

@@ -30,6 +30,8 @@
 		EE88D139272AFE4B0000D09E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D138272AFE4B0000D09E /* HomeController.swift */; };
 		EE88D13B272B02880000D09E /* HomeControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13A272B02880000D09E /* HomeControllerCell.swift */; };
 		EE88D13D272C686E0000D09E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE88D13C272C686E0000D09E /* User.swift */; };
+		EEA6ABF3273687F70094BC47 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA6ABF2273687F70094BC47 /* Comment.swift */; };
+		EEA6ABF527368C380094BC47 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA6ABF427368C380094BC47 /* CommentCell.swift */; };
 		EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E4E27300F5200C197FD /* SearchViewController.swift */; };
 		EEC78E51273019FF00C197FD /* SearchViewControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E50273019FF00C197FD /* SearchViewControllerCell.swift */; };
 		EEC78E532731931D00C197FD /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC78E522731931D00C197FD /* CameraController.swift */; };
@@ -66,6 +68,8 @@
 		EE88D138272AFE4B0000D09E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EE88D13A272B02880000D09E /* HomeControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCell.swift; sourceTree = "<group>"; };
 		EE88D13C272C686E0000D09E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EEA6ABF2273687F70094BC47 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		EEA6ABF427368C380094BC47 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		EEC78E4E27300F5200C197FD /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		EEC78E50273019FF00C197FD /* SearchViewControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerCell.swift; sourceTree = "<group>"; };
 		EEC78E522731931D00C197FD /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				EE88D12E272AD41C0000D09E /* Post.swift */,
+				EEA6ABF2273687F70094BC47 /* Comment.swift */,
 				EE88D13C272C686E0000D09E /* User.swift */,
 			);
 			path = Models;
@@ -184,6 +189,7 @@
 				EE88D138272AFE4B0000D09E /* HomeController.swift */,
 				EE88D13A272B02880000D09E /* HomeControllerCell.swift */,
 				EEC78E7C27342E8E00C197FD /* CommentsController.swift */,
+				EEA6ABF427368C380094BC47 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -323,8 +329,10 @@
 				EE2BBE9F271F318B004D61DD /* AppDelegate.swift in Sources */,
 				EEC78E4F27300F5200C197FD /* SearchViewController.swift in Sources */,
 				EE88D136272AF1130000D09E /* CustomImageView.swift in Sources */,
+				EEA6ABF3273687F70094BC47 /* Comment.swift in Sources */,
 				EE88D12F272AD41C0000D09E /* Post.swift in Sources */,
 				EE88D126272867B70000D09E /* PhotoSelectorController.swift in Sources */,
+				EEA6ABF527368C380094BC47 /* CommentCell.swift in Sources */,
 				EEC78E532731931D00C197FD /* CameraController.swift in Sources */,
 				EE55BA3A2723E8FD00109530 /* UserProfileController.swift in Sources */,
 				EE2BBEA1271F318B004D61DD /* SceneDelegate.swift in Sources */,
