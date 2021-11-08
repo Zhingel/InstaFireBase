@@ -12,6 +12,7 @@ import FirebaseAuth
 
 protocol HomePostCellDelegate {
     func didTapComment(post: Post)
+    func didLike(for cell: HomeControllerCell)
 }
 
 class HomeControllerCell: UICollectionViewCell {
@@ -102,11 +103,7 @@ class HomeControllerCell: UICollectionViewCell {
         captionLabel.constraints(top: ribbonButton.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 8, paddingLeft: 8, paddingRight: 8, width: 0, height: 0)
     }
     @objc fileprivate func handleLike() {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        guard let postId = post?.id else {return}
-        let values = [uid: 1]
-        Database.database().reference().child("likes").child(postId).updateChildValues(values)
-        guard var post = post else {return}
+        delegate?.didLike(for: self)
     }
     @objc fileprivate func handleComment() {
         guard let post = self.post else {return}

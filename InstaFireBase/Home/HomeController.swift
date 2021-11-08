@@ -12,12 +12,25 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout, HomePostCellDelegate {
+    func didLike(for cell: HomeControllerCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else {return}
+        var post = self.posts[indexPath.item]
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let postId = post.id else {return}
+        let values = [uid: post.hasLiked == true ? 0 : 1]
+        Database.database().reference().child("likes").child(postId).updateChildValues(values)
+        post.hasLiked.toggle()
+        self.posts[indexPath.item] = post
+        self.collectionView.reloadItems(at: [indexPath])
+        
+    }
+    
     func didTapComment(post: Post) {
-        print(post.caption)
         let vc = CommentsController(collectionViewLayout: UICollectionViewFlowLayout())
         vc.post = post
         navigationController?.pushViewController(vc, animated: true)
     }
+    
     
     var posts = [Post]()
     override func viewDidLoad() {
