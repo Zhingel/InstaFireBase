@@ -23,6 +23,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
     let avatarImageView: CustomImageView = {
         let avatarImageView = CustomImageView()
         avatarImageView.layer.cornerRadius = 25
+        avatarImageView.clipsToBounds = true
         return avatarImageView
     }()
     lazy var containerView: UIView = {
@@ -69,6 +70,8 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
         collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: "Cell")
         navigationItem.title = "Comments"
@@ -124,6 +127,13 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 60)
+        let cellSize = CommentCell(frame: frame)
+        cellSize.comment = comments[indexPath.item]
+        cellSize.layoutIfNeeded()
+        let targeSize = CGSize(width: view.bounds.width, height: 1000)
+        let autoSized = cellSize.systemLayoutSizeFitting(targeSize)
+        let height = max(60, autoSized.height)
         return CGSize(width: view.bounds.width, height: 60)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
