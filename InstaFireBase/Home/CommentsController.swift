@@ -75,7 +75,6 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView.register(HeaderCell.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: "Cell")
         navigationItem.title = "Comments"
-        
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.sendButton.isHidden = false
@@ -131,6 +130,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         let cellSize = CommentCell(frame: frame)
         cellSize.comment = comments[indexPath.item]
         cellSize.layoutIfNeeded()
+        cellSize.autoresizesSubviews = true
         let targeSize = CGSize(width: view.bounds.width, height: 1000)
         let autoSized = cellSize.systemLayoutSizeFitting(targeSize)
         let height = max(60, autoSized.height)

@@ -71,12 +71,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 guard let dictionary = value as? [String: Any] else { return }
                 var post = Post(user: user, dictionary: dictionary)
                  post.id = key
-                self.posts.append(post)
+                guard let userUid = Auth.auth().currentUser?.uid else {return}
+                Database.database().reference().child("likes").child(key).child(userUid).observeSingleEvent(of: .value) { snapshot in
+                    print(snapshot.value)
+                    if let value = snapshot.value as? Int, value == 1 {
+                        post.hasLiked = true
+                    } else {
+                        post.hasLiked = false
+                    }
+                    self.posts.append(post)
+                    self.posts.sort {(p1, p2) -> Bool in
+                        return p1.creationDate.compare(p2.creationDate)  == .orderedDescending
+                    }
+                    self.collectionView?.reloadData() 
+                }
             })
-            self.posts.sort {(p1, p2) -> Bool in
-                return p1.creationDate.compare(p2.creationDate)  == .orderedDescending
-            }
-            self.collectionView?.reloadData()
         }) { error in
             print("Failed to download", error)
         }

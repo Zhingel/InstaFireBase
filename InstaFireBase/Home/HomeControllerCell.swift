@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 protocol HomePostCellDelegate {
     func didTapComment(post: Post)
@@ -19,6 +21,7 @@ class HomeControllerCell: UICollectionViewCell {
             guard let imageURL = post?.imageURL else {return}
             imageView.loadImage(urlString: imageURL)
             usernameLabel.text = post?.user.username
+            likeButton.setImage(post?.hasLiked == true ? UIImage(named: "like_selected")?.withRenderingMode(.alwaysOriginal) : UIImage(named: "like_unselected")?.withRenderingMode(.alwaysOriginal) , for: .normal)
             guard let profileImageURL = post?.user.profileImageURL else {return}
             userProfileImage.loadImage(urlString: profileImageURL)
             setupAttributedCaption()
@@ -53,6 +56,7 @@ class HomeControllerCell: UICollectionViewCell {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "like_unselected"), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         return button
     }()
     let commentButton: UIButton = {
@@ -96,6 +100,13 @@ class HomeControllerCell: UICollectionViewCell {
         ribbonButton.constraints(top: imageView.bottomAnchor, bottom: nil, left: nil, right: rightAnchor, paddingTop: 8, paddingBottom: 0, paddingLeft: 0, paddingRight: 10, width: 0, height: 0)
         setupStackView()
         captionLabel.constraints(top: ribbonButton.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingBottom: 8, paddingLeft: 8, paddingRight: 8, width: 0, height: 0)
+    }
+    @objc fileprivate func handleLike() {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        guard let postId = post?.id else {return}
+        let values = [uid: 1]
+        Database.database().reference().child("likes").child(postId).updateChildValues(values)
+        guard var post = post else {return}
     }
     @objc fileprivate func handleComment() {
         guard let post = self.post else {return}
