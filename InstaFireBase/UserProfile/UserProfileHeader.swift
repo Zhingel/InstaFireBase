@@ -11,6 +11,8 @@ import FirebaseDatabase
 import Firebase
 
 class UserProfileHeader: UICollectionViewCell {
+    var didChangedToListView: (() -> Void)?
+    var didChangedToGridView: (() -> Void)?
     var user: User? {
         didSet {
             guard let profileImageURL = user?.profileImageURL else {return}
@@ -29,12 +31,14 @@ class UserProfileHeader: UICollectionViewCell {
     let gridButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "grid"), for: .normal)
+        button.addTarget(self, action: #selector(handleToGridItem), for: .touchUpInside)
         return button
     }()
     let listButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = .lightGray
         button.setImage(UIImage(named: "list"), for: .normal)
+        button.addTarget(self, action: #selector(handleToListView), for: .touchUpInside)
         return button
     }()
     let bookmarkButton: UIButton = {
@@ -98,6 +102,16 @@ class UserProfileHeader: UICollectionViewCell {
         
         tabbarView()
         followersBarView()
+    }
+    @objc fileprivate func handleToGridItem() {
+        gridButton.tintColor = UIColor.rgb(red: 17, green: 154, blue: 257)
+        listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        didChangedToGridView?()
+    }
+    @objc fileprivate func handleToListView() {
+        listButton.tintColor = UIColor.rgb(red: 17, green: 154, blue: 257)
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        didChangedToListView?()
     }
     @objc fileprivate func handleFollowButton() {
         guard let profileUID = Auth.auth().currentUser?.uid else {return}
