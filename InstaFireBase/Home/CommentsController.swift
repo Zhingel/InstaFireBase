@@ -11,15 +11,23 @@ import FirebaseDatabase
 import FirebaseAuth
 import Firebase
 
-class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UITextFieldDelegate {
+class CommentsController: UICollectionViewController, UICollectionViewDelegateFlowLayout, CustomTextViewDelegate {
+    func addCommentFunc(for commentTextDelegate: String) {
+        //guard let commentText = commentTextDelegate else {return}
+        let postId = post?.id ?? ""
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        let comment = ["text" : commentTextDelegate, "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
+        let ref = Database.database().reference().child("comments").child(postId).childByAutoId()
+        ref.updateChildValues(comment)
+        comments.removeAll()
+        fetchComments()
+        textFieldView.clearCommentTextField()
+    }
+    
     var comments = [Comment]()
     var post: Post?
     var user: User?
-    let commentTextField: UITextField = {
-        let text = UITextField()
-        text.placeholder = "Enter Comment"
-        return text
-    }()
+   
     let avatarImageView: CustomImageView = {
         let avatarImageView = CustomImageView()
         avatarImageView.layer.cornerRadius = 25
@@ -27,7 +35,7 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         return avatarImageView
     }()
     lazy var containerView: UIView = {
-        let containerView = UIView()
+        let containerView = UIView() 
         containerView.backgroundColor = .white
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 80)
         let deviderView = UIView()
@@ -40,31 +48,16 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         deviderView.constraints(top: containerView.topAnchor, bottom: nil, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 12, paddingRight: 12, width: 0, height: 0.5)
         return containerView
     }()
-    lazy var textFieldView: UIView = {
-        let textFieldView = UIView()
-        textFieldView.layer.borderWidth = 0.5
-        textFieldView.layer.cornerRadius = 20
-        textFieldView.layer.borderColor = UIColor.lightGray.cgColor
-        textFieldView.addSubview(sendButton)
-        sendButton.constraints(top: textFieldView.topAnchor, bottom: textFieldView.bottomAnchor, left: nil, right: textFieldView.rightAnchor, paddingTop: 0, paddingBottom: 0, paddingLeft: 0, paddingRight: 10, width: 50, height: 0)
-        textFieldView.addSubview(commentTextField)
-        commentTextField.constraints(top: textFieldView.topAnchor, bottom: textFieldView.bottomAnchor, left: textFieldView.leftAnchor, right: sendButton.leftAnchor, paddingTop: 8, paddingBottom: -8, paddingLeft: 20, paddingRight: 8, width: 0, height: 0)
+    lazy var textFieldView: CustomTextView = {
+        let textFieldView = CustomTextView()
+        textFieldView.delegate = self
         return textFieldView
     }()
-    let sendButton: UIButton = {
-        let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        sendButton.addTarget(self, action: #selector(addComment), for: .touchUpInside)
-        sendButton.isHidden = true
-        sendButton.alpha = 0.7
-        return sendButton
-    }()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
         fetchComments()
-        commentTextField.delegate = self
         collectionView.showsVerticalScrollIndicator = false
 //        ////////////
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
@@ -76,24 +69,19 @@ class CommentsController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView.register(CommentCell.self, forCellWithReuseIdentifier: "Cell")
         navigationItem.title = "Comments"
     }
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.sendButton.isHidden = false
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.sendButton.isHidden = true
-    }
-    @objc func addComment() {
-        guard let commentText = commentTextField.text else {return}
-        if !commentText.isEmpty {
-            let postId = post?.id ?? ""
-            guard let uid = Auth.auth().currentUser?.uid else {return}
-            let comment = ["text" : commentTextField.text ?? "", "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
-            let ref = Database.database().reference().child("comments").child(postId).childByAutoId()
-            ref.updateChildValues(comment)
-            comments.removeAll()
-            fetchComments()
-        }
-    }
+  
+//    @objc func addComment() {
+//        guard let commentText = commentTextField.text else {return}
+//        if !commentText.isEmpty {
+//            let postId = post?.id ?? ""
+//            guard let uid = Auth.auth().currentUser?.uid else {return}
+//            let comment = ["text" : commentTextField.text ?? "", "creationDate" : Date().timeIntervalSince1970, "uid": uid] as [String : Any]
+//            let ref = Database.database().reference().child("comments").child(postId).childByAutoId()
+//            ref.updateChildValues(comment)
+//            comments.removeAll()
+//            fetchComments()
+//        }
+//    }
     
     fileprivate func fetchData() {
         guard let uid = Auth.auth().currentUser?.uid else {return}

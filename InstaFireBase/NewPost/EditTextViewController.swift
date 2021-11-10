@@ -83,6 +83,7 @@ class EditTextViewController: UIViewController {
             })
         }
     }
+    
     fileprivate func saveDataBaseWithImageURL(imageURL: String) {
         guard let postImage = selectedImage else {return}
         guard let text = textView.text else {return}
