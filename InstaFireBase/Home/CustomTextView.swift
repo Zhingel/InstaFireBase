@@ -52,6 +52,7 @@ class CustomTextView: UIView, UITextFieldDelegate {
     }
     func clearCommentTextField() {
         commentTextField.text = nil
+        sendButton.isHidden = true
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

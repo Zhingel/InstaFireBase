@@ -45,6 +45,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
         collectionView.refreshControl = refreshControl
     }
+   
     @objc fileprivate func handleUpdateFeed() {
         handleRefresh()
     }
